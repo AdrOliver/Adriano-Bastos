@@ -1,0 +1,136 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+/*
+* JokenPô
+* Adriano O. Bastos
+*/
+
+int tipoJogo, pontJog1, pontJog2, pontJog3, pontcpu=0;
+
+main()
+
+{
+    jokenpo();
+}
+
+
+int jokenpo()
+{
+    int jogador1, jogador2, cpu;
+    	printf ("---JokenPo---\n");
+    	printf ("1. Jogador VS Jogador \n");	
+    	printf ("2. Jogador X CPU \n");
+    	printf("3. Sair \n");
+    	scanf("%d", &tipoJogo);
+    
+	
+		switch(tipoJogo)
+	{
+	case 1:
+		  printf ("1. Jogador1 VS Jogador2 \n");
+		  printf ("-------------\n");
+      printf("Jogador 1 escolha a opcao! \n");
+   		printf ("0. Pedra\n");
+    	printf ("1. Papel\n");
+    	printf ("2. Tesoura\n");
+    	scanf ("%d", &jogador1);
+    	printf ("-------------\n");
+      printf("Jogador 2 escolha a opcao!\n");
+   		printf ("0. Pedra\n");
+    	printf ("1. Papel\n");
+    	printf ("2. Tesoura\n");
+    	scanf ("%d", &jogador2);
+    if ((jogador1 == 0 && jogador2==2) || (jogador1 == 1 && jogador2 == 0) || (jogador1 == 2 && jogador2 == 1)) //verifica quem venceu
+        {
+            printf("Jogador 1  venceu!\n");
+            pontJog1++; 
+            system("pause");
+            system("cls");
+            printf("Placar: Jog1 %d x Jog2 %d\n", pontJog1, pontJog2);
+            jokenpo();
+        }
+    if (jogador1 == jogador2) //verifica empate
+        {
+            printf ("Empate!\n");
+            system("pause");
+            system("cls");
+            printf("Placar: Jog1 %d x Jog2 %d\n", pontJog1, pontJog2);
+            jokenpo();
+        }
+    else
+        {
+            printf ("Jogador 2 venceu!\n");
+            jogador2++;
+            system("pause");
+            system("cls");
+            printf("Placar: Jog1 %d x Jog2 %d\n", pontJog1, pontJog2);
+            jokenpo();
+        }
+		break;
+		
+	case 2:
+	
+    	printf ("2. Jogador X CPU %d\n");
+    	printf ("-------------\n");
+   		printf ("0. Pedra\n");
+    	printf ("1. Papel\n");
+    	printf ("2. Tesoura\n");
+    	printf ("3. Sair\n");
+    	scanf ("%d", &jogador1);
+    if (jogador1 < 0 || jogador1 >=3)
+    {
+    	printf("valor invalido!");
+        jokenpo();
+    }
+    	srand(time(NULL));
+    	cpu = rand() % 3; // gera um numero aleatorio entre 0 e 2
+    switch(cpu)
+    {
+    case 0: printf ("CPU -> Pedra\n"); break;
+    case 1: printf ("CPU -> Papel\n"); break;
+    case 2: printf ("CPU -> Tesoura\n"); break;
+    }
+    if ((jogador1 == 0 && cpu==2) || (jogador1 == 1 && cpu == 0) || (jogador1 == 2 && cpu == 1)) //verifica se o jogador venceu
+        {
+            printf("Voce venceu!\n");
+            pontJog3++;
+            system("pause");
+            system("cls");
+           printf("Placar: Jog1 %d x CPU %d\n", pontJog3, pontcpu);
+            jokenpo();
+        }
+    if (jogador1 == cpu) //verifica se houve empate
+        {
+            printf ("Empate!\n");
+            system("pause");
+            system("cls");
+            printf("Placar: Jog1 %d x CPU %d\n", pontJog3, pontcpu);
+            jokenpo();
+        }
+    else
+        {
+            printf ("CPU venceu!\n");
+            pontcpu++;
+            system("pause");
+            system("cls");
+            printf("Placar: Jog1 %d x CPU %d\n", pontJog1, pontcpu);
+            jokenpo();
+	}	
+	
+    	 break;
+    	 
+    case 3: break;
+	
+	system("cls");	 
+	}
+	
+	
+		
+    return 0;
+}
+	
+
+
+
+
